@@ -1,0 +1,1288 @@
+{
+  "departments": [
+    {
+      "slug": "materials",
+      "name": "Building materials"
+    },
+    {
+      "slug": "machinery",
+      "name": "Machinery & equipment"
+    },
+    {
+      "slug": "interiors",
+      "name": "Interiors & furniture"
+    },
+    {
+      "slug": "power",
+      "name": "Electrical & electronics"
+    },
+    {
+      "slug": "outdoor",
+      "name": "Landscaping & gardens"
+    },
+    {
+      "slug": "safety",
+      "name": "Safety & security"
+    }
+  ],
+  "categories": [
+    {
+      "slug": "cement",
+      "name": "Cement",
+      "tone": "blue",
+      "department": "materials"
+    },
+    {
+      "slug": "iron-rods",
+      "name": "Iron rods",
+      "tone": "peach",
+      "department": "materials"
+    },
+    {
+      "slug": "blocks",
+      "name": "Blocks",
+      "tone": "mint",
+      "department": "materials"
+    },
+    {
+      "slug": "roofing",
+      "name": "Roofing",
+      "tone": "lilac",
+      "department": "materials"
+    },
+    {
+      "slug": "tiles",
+      "name": "Tiles",
+      "tone": "yellow",
+      "department": "materials"
+    },
+    {
+      "slug": "paint",
+      "name": "Paint",
+      "tone": "pink",
+      "department": "materials"
+    },
+    {
+      "slug": "plumbing",
+      "name": "Plumbing",
+      "tone": "teal",
+      "department": "materials"
+    },
+    {
+      "slug": "aggregates",
+      "name": "Sand & granite",
+      "tone": "lime",
+      "department": "materials"
+    },
+    {
+      "slug": "plant",
+      "name": "Plant & machinery",
+      "tone": "yellow",
+      "department": "machinery"
+    },
+    {
+      "slug": "tools",
+      "name": "Tools",
+      "tone": "slate",
+      "department": "machinery"
+    },
+    {
+      "slug": "furniture",
+      "name": "Furniture",
+      "tone": "peach",
+      "department": "interiors"
+    },
+    {
+      "slug": "doors-windows",
+      "name": "Doors & windows",
+      "tone": "teal",
+      "department": "interiors"
+    },
+    {
+      "slug": "lighting",
+      "name": "Lighting",
+      "tone": "yellow",
+      "department": "interiors"
+    },
+    {
+      "slug": "electrical",
+      "name": "Wiring & fittings",
+      "tone": "blue",
+      "department": "power"
+    },
+    {
+      "slug": "solar",
+      "name": "Solar & inverters",
+      "tone": "lime",
+      "department": "power"
+    },
+    {
+      "slug": "garden",
+      "name": "Garden & paving",
+      "tone": "mint",
+      "department": "outdoor"
+    },
+    {
+      "slug": "fencing",
+      "name": "Fencing & gates",
+      "tone": "slate",
+      "department": "outdoor"
+    },
+    {
+      "slug": "ppe",
+      "name": "Safety gear",
+      "tone": "peach",
+      "department": "safety"
+    },
+    {
+      "slug": "security",
+      "name": "CCTV & security",
+      "tone": "lilac",
+      "department": "safety"
+    }
+  ],
+  "sellers": [
+    {
+      "id": "okafor",
+      "name": "Okafor Building Supplies",
+      "area": "Ikeja",
+      "distanceKm": 2.4,
+      "verified": true,
+      "replyTime": "about 1 h"
+    },
+    {
+      "id": "lagos-steel",
+      "name": "Lagos Steel Depot",
+      "area": "Ogba",
+      "distanceKm": 6.1,
+      "verified": true,
+      "replyTime": "about 2 h"
+    },
+    {
+      "id": "prime-roofing",
+      "name": "Prime Roofing Co.",
+      "area": "Agege",
+      "distanceKm": 11,
+      "verified": true,
+      "replyTime": "same day"
+    },
+    {
+      "id": "ikeja-finishes",
+      "name": "Ikeja Finishes",
+      "area": "Ikeja",
+      "distanceKm": 3.1,
+      "verified": true,
+      "replyTime": "about 1 h"
+    },
+    {
+      "id": "ikorodu-quarry",
+      "name": "Ikorodu Quarry Direct",
+      "area": "Ikorodu",
+      "distanceKm": 14,
+      "verified": true,
+      "replyTime": "same day"
+    },
+    {
+      "id": "heavy-plant",
+      "name": "Heavy Plant Sales & Hire",
+      "area": "Ojota",
+      "distanceKm": 8.5,
+      "verified": true,
+      "replyTime": "about 3 h"
+    },
+    {
+      "id": "lekki-interiors",
+      "name": "Lekki Interiors",
+      "area": "Lekki",
+      "distanceKm": 18,
+      "verified": true,
+      "replyTime": "about 2 h"
+    },
+    {
+      "id": "volt-solar",
+      "name": "Volt Power & Solar",
+      "area": "Ikeja",
+      "distanceKm": 4.2,
+      "verified": true,
+      "replyTime": "about 1 h"
+    },
+    {
+      "id": "sitesafe",
+      "name": "SiteSafe Supplies",
+      "area": "Oregun",
+      "distanceKm": 3.6,
+      "verified": false,
+      "replyTime": "same day"
+    }
+  ],
+  "areas": [
+    {
+      "id": "ikeja",
+      "city": "Lagos",
+      "name": "Ikeja",
+      "deliveryFee": 10000
+    },
+    {
+      "id": "yaba",
+      "city": "Lagos",
+      "name": "Yaba",
+      "deliveryFee": 12000
+    },
+    {
+      "id": "surulere",
+      "city": "Lagos",
+      "name": "Surulere",
+      "deliveryFee": 12000
+    },
+    {
+      "id": "lekki",
+      "city": "Lagos",
+      "name": "Lekki",
+      "deliveryFee": 18000
+    },
+    {
+      "id": "ikorodu",
+      "city": "Lagos",
+      "name": "Ikorodu",
+      "deliveryFee": 15000
+    },
+    {
+      "id": "wuse",
+      "city": "Abuja",
+      "name": "Wuse",
+      "deliveryFee": 14000
+    },
+    {
+      "id": "gwarinpa",
+      "city": "Abuja",
+      "name": "Gwarinpa",
+      "deliveryFee": 16000
+    },
+    {
+      "id": "gra-ph",
+      "city": "Port Harcourt",
+      "name": "GRA",
+      "deliveryFee": 15000
+    }
+  ],
+  "products": [
+    {
+      "slug": "dangote-3x-cement-42-5r",
+      "name": "Dangote 3X Cement 42.5R, 50 kg",
+      "brand": "Dangote",
+      "category": "cement",
+      "sellerId": "okafor",
+      "price": 11500,
+      "was": 12000,
+      "unit": "bag",
+      "rating": 4.8,
+      "reviews": 312,
+      "deliveryDays": 1,
+      "stock": 2400,
+      "tiers": [
+        {
+          "label": "1–99 bags",
+          "min": 1,
+          "price": 11500
+        },
+        {
+          "label": "100–599 bags",
+          "min": 100,
+          "price": 11200
+        },
+        {
+          "label": "600+ trailer",
+          "min": 600,
+          "price": 10950
+        }
+      ],
+      "specs": [
+        {
+          "label": "Strength class",
+          "value": "42.5R"
+        },
+        {
+          "label": "Standard",
+          "value": "NIS 444-1 · SON certified"
+        },
+        {
+          "label": "Bag weight",
+          "value": "50 kg"
+        },
+        {
+          "label": "Best for",
+          "value": "Columns, beams, slabs, blocks"
+        },
+        {
+          "label": "Bags per trailer",
+          "value": "600"
+        },
+        {
+          "label": "Minimum delivery",
+          "value": "20 bags"
+        }
+      ]
+    },
+    {
+      "slug": "bua-cement-42-5r",
+      "name": "BUA Cement 42.5R, 50 kg",
+      "brand": "BUA",
+      "category": "cement",
+      "sellerId": "okafor",
+      "price": 11300,
+      "unit": "bag",
+      "rating": 4.7,
+      "reviews": 96,
+      "deliveryDays": 1,
+      "stock": 1200,
+      "specs": [
+        {
+          "label": "Strength class",
+          "value": "42.5R"
+        },
+        {
+          "label": "Bag weight",
+          "value": "50 kg"
+        }
+      ]
+    },
+    {
+      "slug": "lafarge-supaset-42-5r",
+      "name": "Lafarge Elephant Supaset 42.5R",
+      "brand": "Lafarge",
+      "category": "cement",
+      "sellerId": "ikeja-finishes",
+      "price": 11800,
+      "was": 12050,
+      "unit": "bag",
+      "rating": 4.5,
+      "reviews": 61,
+      "deliveryDays": 1,
+      "stock": 640,
+      "specs": [
+        {
+          "label": "Strength class",
+          "value": "42.5R"
+        },
+        {
+          "label": "Bag weight",
+          "value": "50 kg"
+        }
+      ]
+    },
+    {
+      "slug": "iron-rod-y12",
+      "name": "High-tensile iron rod Y12, 12 m",
+      "brand": "African Steel",
+      "category": "iron-rods",
+      "sellerId": "lagos-steel",
+      "price": 13400,
+      "was": 13800,
+      "unit": "length",
+      "rating": 4.7,
+      "reviews": 188,
+      "deliveryDays": 2,
+      "stock": 5000,
+      "tiers": [
+        {
+          "label": "1–199 lengths",
+          "min": 1,
+          "price": 13400
+        },
+        {
+          "label": "200+ lengths",
+          "min": 200,
+          "price": 13100
+        }
+      ],
+      "specs": [
+        {
+          "label": "Diameter",
+          "value": "12 mm"
+        },
+        {
+          "label": "Length",
+          "value": "12 m"
+        },
+        {
+          "label": "Grade",
+          "value": "B500"
+        }
+      ]
+    },
+    {
+      "slug": "binding-wire-20kg",
+      "name": "Binding wire, 20 kg roll",
+      "brand": "Nigerian Wire",
+      "category": "iron-rods",
+      "sellerId": "lagos-steel",
+      "price": 32000,
+      "unit": "roll",
+      "rating": 4.6,
+      "reviews": 44,
+      "deliveryDays": 2,
+      "stock": 300,
+      "specs": [
+        {
+          "label": "Weight",
+          "value": "20 kg"
+        },
+        {
+          "label": "Gauge",
+          "value": "16"
+        }
+      ]
+    },
+    {
+      "slug": "brc-mesh-a142",
+      "name": "BRC wire mesh A142, 2.4 × 4.8 m",
+      "brand": "Nigerian Wire",
+      "category": "iron-rods",
+      "sellerId": "lagos-steel",
+      "price": 28500,
+      "unit": "sheet",
+      "rating": 4.5,
+      "reviews": 38,
+      "deliveryDays": 2,
+      "stock": 220,
+      "specs": [
+        {
+          "label": "Size",
+          "value": "2.4 × 4.8 m"
+        }
+      ]
+    },
+    {
+      "slug": "sandcrete-block-9",
+      "name": "Vibrated sandcrete block 9″",
+      "brand": "Ojota Blocks",
+      "category": "blocks",
+      "sellerId": "okafor",
+      "price": 650,
+      "unit": "block",
+      "rating": 4.6,
+      "reviews": 210,
+      "deliveryDays": 1,
+      "stock": 20000,
+      "tiers": [
+        {
+          "label": "1–999 blocks",
+          "min": 1,
+          "price": 650
+        },
+        {
+          "label": "1,000+ blocks",
+          "min": 1000,
+          "price": 610
+        }
+      ],
+      "specs": [
+        {
+          "label": "Size",
+          "value": "9″ hollow · 450 mm"
+        }
+      ]
+    },
+    {
+      "slug": "long-span-roofing-055",
+      "name": "Long-span aluminium roofing 0.55 mm",
+      "brand": "Tower Aluminium",
+      "category": "roofing",
+      "sellerId": "prime-roofing",
+      "price": 7400,
+      "was": 7900,
+      "unit": "metre",
+      "rating": 4.6,
+      "reviews": 74,
+      "deliveryDays": 3,
+      "stock": 4000,
+      "specs": [
+        {
+          "label": "Thickness",
+          "value": "0.55 mm"
+        },
+        {
+          "label": "Colour",
+          "value": "Brick red"
+        }
+      ]
+    },
+    {
+      "slug": "porcelain-tile-60",
+      "name": "Porcelain floor tile 60×60, matte grey",
+      "brand": "Royal Ceramics",
+      "category": "tiles",
+      "sellerId": "ikeja-finishes",
+      "price": 13500,
+      "was": 15000,
+      "unit": "carton",
+      "rating": 4.5,
+      "reviews": 59,
+      "deliveryDays": 2,
+      "stock": 380,
+      "specs": [
+        {
+          "label": "Size",
+          "value": "60 × 60 cm"
+        },
+        {
+          "label": "Per carton",
+          "value": "4 tiles · 1.44 m²"
+        }
+      ]
+    },
+    {
+      "slug": "wall-tile-30x60",
+      "name": "Ceramic wall tile 30×60, white gloss",
+      "brand": "Royal Ceramics",
+      "category": "tiles",
+      "sellerId": "ikeja-finishes",
+      "price": 11200,
+      "unit": "carton",
+      "rating": 4.4,
+      "reviews": 47,
+      "deliveryDays": 3,
+      "stock": 260,
+      "specs": [
+        {
+          "label": "Size",
+          "value": "30 × 60 cm"
+        }
+      ]
+    },
+    {
+      "slug": "emulsion-paint-20l",
+      "name": "Emulsion paint, 20 L, white",
+      "brand": "Dulux",
+      "category": "paint",
+      "sellerId": "ikeja-finishes",
+      "price": 36800,
+      "was": 40000,
+      "unit": "bucket",
+      "rating": 4.7,
+      "reviews": 141,
+      "deliveryDays": 1,
+      "stock": 150,
+      "specs": [
+        {
+          "label": "Volume",
+          "value": "20 L"
+        },
+        {
+          "label": "Finish",
+          "value": "Matt"
+        }
+      ]
+    },
+    {
+      "slug": "pvc-pipe-4",
+      "name": "PVC pressure pipe 4″, 5.8 m",
+      "brand": "Geepee",
+      "category": "plumbing",
+      "sellerId": "okafor",
+      "price": 9800,
+      "unit": "length",
+      "rating": 4.6,
+      "reviews": 64,
+      "deliveryDays": 1,
+      "stock": 900,
+      "specs": [
+        {
+          "label": "Diameter",
+          "value": "4″"
+        },
+        {
+          "label": "Length",
+          "value": "5.8 m"
+        }
+      ]
+    },
+    {
+      "slug": "water-tank-2000l",
+      "name": "Water storage tank, 2,000 L",
+      "brand": "Geepee",
+      "category": "plumbing",
+      "sellerId": "okafor",
+      "price": 245000,
+      "unit": "tank",
+      "rating": 4.7,
+      "reviews": 92,
+      "deliveryDays": 2,
+      "stock": 40,
+      "specs": [
+        {
+          "label": "Capacity",
+          "value": "2,000 L"
+        }
+      ]
+    },
+    {
+      "slug": "cable-2-5mm",
+      "name": "Single-core cable 2.5 mm², 100 m",
+      "brand": "Coleman Cables",
+      "category": "electrical",
+      "sellerId": "ikeja-finishes",
+      "price": 62000,
+      "unit": "coil",
+      "rating": 4.8,
+      "reviews": 120,
+      "deliveryDays": 2,
+      "stock": 90,
+      "specs": [
+        {
+          "label": "Size",
+          "value": "2.5 mm²"
+        },
+        {
+          "label": "Length",
+          "value": "100 m"
+        }
+      ]
+    },
+    {
+      "slug": "granite-3-4-30t",
+      "name": "Granite chippings ¾″, 30 t",
+      "brand": "Ikorodu Quarry",
+      "category": "aggregates",
+      "sellerId": "ikorodu-quarry",
+      "price": 780000,
+      "unit": "trip",
+      "rating": 4.9,
+      "reviews": 57,
+      "deliveryDays": 2,
+      "stock": 30,
+      "specs": [
+        {
+          "label": "Size",
+          "value": "¾″"
+        },
+        {
+          "label": "Load",
+          "value": "30 tonne tipper"
+        }
+      ]
+    },
+    {
+      "slug": "sharp-sand-20t",
+      "name": "Sharp sand, 20 t",
+      "brand": "Ikorodu Quarry",
+      "category": "aggregates",
+      "sellerId": "ikorodu-quarry",
+      "price": 210000,
+      "unit": "trip",
+      "rating": 4.6,
+      "reviews": 83,
+      "deliveryDays": 1,
+      "stock": 30,
+      "specs": [
+        {
+          "label": "Load",
+          "value": "20 tonne tipper"
+        }
+      ]
+    },
+    {
+      "slug": "concrete-mixer-1-bag-diesel",
+      "name": "Concrete mixer, 1-bag diesel",
+      "brand": "Lister",
+      "category": "plant",
+      "sellerId": "heavy-plant",
+      "price": 1350000,
+      "unit": "unit",
+      "rating": 4.6,
+      "reviews": 21,
+      "deliveryDays": 3,
+      "stock": 6,
+      "specs": [
+        {
+          "label": "Capacity",
+          "value": "1 bag (350 L drum)"
+        },
+        {
+          "label": "Engine",
+          "value": "Diesel, hand start"
+        }
+      ]
+    },
+    {
+      "slug": "plate-compactor-petrol",
+      "name": "Plate compactor, petrol, 90 kg",
+      "brand": "Honda",
+      "category": "plant",
+      "sellerId": "heavy-plant",
+      "price": 640000,
+      "was": 690000,
+      "unit": "unit",
+      "rating": 4.5,
+      "reviews": 14,
+      "deliveryDays": 3,
+      "stock": 4,
+      "specs": [
+        {
+          "label": "Plate",
+          "value": "500 × 600 mm"
+        },
+        {
+          "label": "Weight",
+          "value": "90 kg"
+        }
+      ]
+    },
+    {
+      "slug": "wheelbarrow-heavy-duty",
+      "name": "Heavy-duty wheelbarrow, 100 L",
+      "brand": "Geepee",
+      "category": "tools",
+      "sellerId": "okafor",
+      "price": 38000,
+      "unit": "piece",
+      "rating": 4.4,
+      "reviews": 140,
+      "deliveryDays": 1,
+      "stock": 85,
+      "specs": [
+        {
+          "label": "Tray",
+          "value": "100 L steel"
+        },
+        {
+          "label": "Tyre",
+          "value": "Pneumatic"
+        }
+      ]
+    },
+    {
+      "slug": "sofa-3-seater-fabric",
+      "name": "3-seater fabric sofa, grey",
+      "brand": "Lekki Interiors",
+      "category": "furniture",
+      "sellerId": "lekki-interiors",
+      "price": 485000,
+      "unit": "piece",
+      "rating": 4.7,
+      "reviews": 33,
+      "deliveryDays": 5,
+      "stock": 12,
+      "specs": [
+        {
+          "label": "Width",
+          "value": "2.1 m"
+        },
+        {
+          "label": "Frame",
+          "value": "Hardwood"
+        }
+      ]
+    },
+    {
+      "slug": "office-desk-1-4m",
+      "name": "Office desk with drawers, 1.4 m",
+      "brand": "Lekki Interiors",
+      "category": "furniture",
+      "sellerId": "lekki-interiors",
+      "price": 165000,
+      "unit": "piece",
+      "rating": 4.5,
+      "reviews": 18,
+      "deliveryDays": 4,
+      "stock": 25,
+      "specs": [
+        {
+          "label": "Size",
+          "value": "140 × 70 cm"
+        },
+        {
+          "label": "Finish",
+          "value": "Oak laminate"
+        }
+      ]
+    },
+    {
+      "slug": "steel-security-door-3ft",
+      "name": "Steel security door, 3 ft",
+      "brand": "Turkish Doors",
+      "category": "doors-windows",
+      "sellerId": "lekki-interiors",
+      "price": 285000,
+      "unit": "piece",
+      "rating": 4.8,
+      "reviews": 46,
+      "deliveryDays": 3,
+      "stock": 20,
+      "specs": [
+        {
+          "label": "Size",
+          "value": "3 × 7 ft"
+        },
+        {
+          "label": "Lock",
+          "value": "Multi-point"
+        }
+      ]
+    },
+    {
+      "slug": "aluminium-sliding-window-4x4",
+      "name": "Aluminium sliding window, 4 × 4 ft",
+      "brand": "Tower Aluminium",
+      "category": "doors-windows",
+      "sellerId": "prime-roofing",
+      "price": 95000,
+      "unit": "piece",
+      "rating": 4.6,
+      "reviews": 62,
+      "deliveryDays": 4,
+      "stock": 40,
+      "specs": [
+        {
+          "label": "Glass",
+          "value": "5 mm tinted"
+        },
+        {
+          "label": "Profile",
+          "value": "Casement-grade aluminium"
+        }
+      ]
+    },
+    {
+      "slug": "led-panel-60x60-40w",
+      "name": "LED panel light, 60 × 60 cm, 40 W",
+      "brand": "Philips",
+      "category": "lighting",
+      "sellerId": "volt-solar",
+      "price": 18500,
+      "unit": "piece",
+      "rating": 4.7,
+      "reviews": 210,
+      "deliveryDays": 1,
+      "stock": 400,
+      "specs": [
+        {
+          "label": "Power",
+          "value": "40 W"
+        },
+        {
+          "label": "Colour",
+          "value": "6500 K daylight"
+        }
+      ]
+    },
+    {
+      "slug": "hybrid-inverter-5kva",
+      "name": "Hybrid inverter, 5 kVA 48 V",
+      "brand": "Felicity Solar",
+      "category": "solar",
+      "sellerId": "volt-solar",
+      "price": 1150000,
+      "unit": "unit",
+      "rating": 4.8,
+      "reviews": 74,
+      "deliveryDays": 2,
+      "stock": 15,
+      "specs": [
+        {
+          "label": "Rating",
+          "value": "5 kVA / 48 V"
+        },
+        {
+          "label": "MPPT",
+          "value": "Built in"
+        }
+      ]
+    },
+    {
+      "slug": "solar-panel-450w-mono",
+      "name": "Solar panel, 450 W mono",
+      "brand": "Jinko",
+      "category": "solar",
+      "sellerId": "volt-solar",
+      "price": 145000,
+      "was": 155000,
+      "unit": "panel",
+      "rating": 4.7,
+      "reviews": 128,
+      "deliveryDays": 2,
+      "stock": 160,
+      "specs": [
+        {
+          "label": "Output",
+          "value": "450 W"
+        },
+        {
+          "label": "Type",
+          "value": "Monocrystalline"
+        }
+      ]
+    },
+    {
+      "slug": "interlocking-paving-stones",
+      "name": "Interlocking paving stones, 60 mm",
+      "brand": "Ikorodu Quarry",
+      "category": "garden",
+      "sellerId": "ikorodu-quarry",
+      "price": 9500,
+      "unit": "m²",
+      "rating": 4.6,
+      "reviews": 51,
+      "deliveryDays": 3,
+      "stock": 2000,
+      "specs": [
+        {
+          "label": "Thickness",
+          "value": "60 mm"
+        },
+        {
+          "label": "Pattern",
+          "value": "Zig-zag"
+        }
+      ]
+    },
+    {
+      "slug": "artificial-grass-35mm",
+      "name": "Artificial grass, 35 mm",
+      "brand": "GreenTurf",
+      "category": "garden",
+      "sellerId": "lekki-interiors",
+      "price": 14000,
+      "unit": "m²",
+      "rating": 4.4,
+      "reviews": 27,
+      "deliveryDays": 4,
+      "stock": 600,
+      "specs": [
+        {
+          "label": "Pile height",
+          "value": "35 mm"
+        },
+        {
+          "label": "Roll width",
+          "value": "2 m"
+        }
+      ]
+    },
+    {
+      "slug": "razor-wire-450mm",
+      "name": "Razor wire coil, 450 mm",
+      "brand": "Lagos Steel",
+      "category": "fencing",
+      "sellerId": "lagos-steel",
+      "price": 28000,
+      "unit": "coil",
+      "rating": 4.5,
+      "reviews": 39,
+      "deliveryDays": 2,
+      "stock": 120,
+      "specs": [
+        {
+          "label": "Coil diameter",
+          "value": "450 mm"
+        },
+        {
+          "label": "Length",
+          "value": "About 10 m stretched"
+        }
+      ]
+    },
+    {
+      "slug": "safety-helmet",
+      "name": "Safety helmet with chin strap",
+      "brand": "Vaultex",
+      "category": "ppe",
+      "sellerId": "sitesafe",
+      "price": 6500,
+      "unit": "piece",
+      "rating": 4.5,
+      "reviews": 96,
+      "deliveryDays": 1,
+      "stock": 900,
+      "tiers": [
+        {
+          "label": "1–49",
+          "min": 1,
+          "price": 6500
+        },
+        {
+          "label": "50+",
+          "min": 50,
+          "price": 5800
+        }
+      ],
+      "specs": [
+        {
+          "label": "Standard",
+          "value": "EN 397"
+        },
+        {
+          "label": "Colours",
+          "value": "White, yellow, orange"
+        }
+      ]
+    },
+    {
+      "slug": "safety-boots-steel-toe",
+      "name": "Safety boots, steel toe",
+      "brand": "Vaultex",
+      "category": "ppe",
+      "sellerId": "sitesafe",
+      "price": 24000,
+      "unit": "pair",
+      "rating": 4.3,
+      "reviews": 58,
+      "deliveryDays": 1,
+      "stock": 300,
+      "specs": [
+        {
+          "label": "Toe cap",
+          "value": "Steel, 200 J"
+        },
+        {
+          "label": "Sizes",
+          "value": "39–47"
+        }
+      ]
+    },
+    {
+      "slug": "cctv-kit-4-camera",
+      "name": "CCTV kit, 4 cameras + DVR",
+      "brand": "Hikvision",
+      "category": "security",
+      "sellerId": "volt-solar",
+      "price": 285000,
+      "was": 310000,
+      "unit": "kit",
+      "rating": 4.6,
+      "reviews": 44,
+      "deliveryDays": 2,
+      "stock": 30,
+      "specs": [
+        {
+          "label": "Cameras",
+          "value": "4 × 2 MP"
+        },
+        {
+          "label": "Storage",
+          "value": "1 TB DVR"
+        }
+      ]
+    }
+  ],
+  "estates": [
+    {
+      "id": "flourish-kano",
+      "kind": "Land",
+      "name": "Flourish City Estate",
+      "area": "Kwanar Dawaki",
+      "city": "Kano",
+      "detail": "500 m² plots · C of O",
+      "price": 3500000,
+      "per": "per plot",
+      "tone": "lilac"
+    },
+    {
+      "id": "mufasa-lekki",
+      "kind": "Apartment",
+      "name": "Mufasa Apartments",
+      "area": "Ikate, Lekki",
+      "city": "Lagos",
+      "detail": "3 bedrooms · serviced",
+      "price": 90000000,
+      "tone": "blue"
+    },
+    {
+      "id": "cedarwood-ikoyi",
+      "kind": "House",
+      "name": "Cedarwood Luxury Maisonettes",
+      "area": "Ikoyi",
+      "city": "Lagos",
+      "detail": "4 bedrooms · pool",
+      "price": 197500000,
+      "tone": "peach"
+    },
+    {
+      "id": "gold-city-warri",
+      "kind": "Land",
+      "name": "Gold City Estate",
+      "area": "Udu Town",
+      "city": "Warri",
+      "detail": "600 m² plots · gated",
+      "price": 4500000,
+      "per": "per plot",
+      "tone": "mint"
+    },
+    {
+      "id": "grosvenor-ikeja",
+      "kind": "Short-let",
+      "name": "Grosvenor Place",
+      "area": "Awolowo Way, Ikeja",
+      "city": "Lagos",
+      "detail": "1–2 bedrooms · 24 h power",
+      "price": 85000,
+      "per": "per night",
+      "tone": "pink"
+    },
+    {
+      "id": "regent-abuja",
+      "kind": "Apartment",
+      "name": "Regent Terraces",
+      "area": "Kuje",
+      "city": "Abuja",
+      "detail": "2 bedrooms · off-plan",
+      "price": 38000000,
+      "tone": "teal"
+    },
+    {
+      "id": "royal-villas-enugu",
+      "kind": "Land",
+      "name": "Royal Villas Estate",
+      "area": "Agbogazi Nike",
+      "city": "Enugu",
+      "detail": "450 m² plots",
+      "price": 2500000,
+      "per": "per plot",
+      "tone": "yellow"
+    },
+    {
+      "id": "oasis-epe",
+      "kind": "House",
+      "name": "Oasis Courts",
+      "area": "Epe",
+      "city": "Lagos",
+      "detail": "3-bedroom finished terrace",
+      "price": 55860000,
+      "tone": "lime"
+    },
+    {
+      "id": "flourish-ph",
+      "kind": "Land",
+      "name": "Flourish Luxury Villas",
+      "area": "Eneka",
+      "city": "Port Harcourt",
+      "detail": "500 m² plots · dry land",
+      "price": 6000000,
+      "per": "per plot",
+      "tone": "slate"
+    },
+    {
+      "id": "excel-abuja",
+      "kind": "Land",
+      "name": "Excel Villas Estate",
+      "area": "Sabon Lugbe",
+      "city": "Abuja",
+      "detail": "600 m² plots",
+      "price": 8500000,
+      "per": "per plot",
+      "tone": "blue"
+    },
+    {
+      "id": "airport-view-asaba",
+      "kind": "Land",
+      "name": "Airport View Estate",
+      "area": "Ibusa",
+      "city": "Asaba",
+      "detail": "500 m² plots",
+      "price": 3000000,
+      "per": "per plot",
+      "tone": "peach"
+    },
+    {
+      "id": "cedarwood-lekki",
+      "kind": "Apartment",
+      "name": "Cedarwood Terraces",
+      "area": "Sangotedo, Lekki",
+      "city": "Lagos",
+      "detail": "2 bedrooms · estate security",
+      "price": 65000000,
+      "tone": "lilac"
+    }
+  ],
+  "promos": [
+    {
+      "id": "bulk-cement",
+      "badge": "Up to 9% off",
+      "title": "Bulk cement, lower price per bag",
+      "text": "From 100 bags · Dangote, BUA, Lafarge",
+      "cta": "Shop cement",
+      "href": "/search?category=cement",
+      "theme": "primary",
+      "icon": "cement",
+      "category": "cement"
+    },
+    {
+      "id": "dangote-3x",
+      "badge": "Sponsored",
+      "title": "Dangote 3X, now delivered in 24 hours",
+      "text": "Order before 2pm in Lagos and Ogun",
+      "cta": "Order now",
+      "href": "/product/dangote-3x-cement-42-5r",
+      "theme": "dark",
+      "icon": "truck",
+      "category": "cement",
+      "sponsor": "Dangote"
+    },
+    {
+      "id": "bua-weekend",
+      "badge": "Sponsored",
+      "title": "BUA 42.5R from ₦11,300 a bag",
+      "text": "Next-day delivery from Okafor Building Supplies",
+      "cta": "View product",
+      "href": "/product/bua-cement-42-5r",
+      "theme": "deal",
+      "icon": "cement",
+      "category": "cement",
+      "sponsor": "BUA"
+    },
+    {
+      "id": "iron-rods",
+      "badge": "Price drop",
+      "title": "Iron rods for every pour",
+      "text": "12mm and 16mm from verified mills",
+      "cta": "Shop iron rods",
+      "href": "/search?category=iron-rods",
+      "theme": "deal",
+      "icon": "rods",
+      "category": "iron-rods"
+    },
+    {
+      "id": "roofing",
+      "badge": "Roofing week",
+      "title": "Long-span and stone-coated roofing",
+      "text": "Measured, cut and delivered to site",
+      "cta": "See roofing",
+      "href": "/search?category=roofing",
+      "theme": "success",
+      "icon": "roof",
+      "category": "roofing"
+    },
+    {
+      "id": "solar",
+      "badge": "Save on diesel",
+      "title": "Solar kits for site offices and homes",
+      "text": "Panels, inverters and batteries from verified installers",
+      "cta": "Shop solar",
+      "href": "/search?category=solar",
+      "theme": "success",
+      "icon": "solar",
+      "category": "solar"
+    },
+    {
+      "id": "ppe",
+      "badge": "Bulk pricing",
+      "title": "Kit out your crew for less",
+      "text": "Helmets, boots and vests at lower prices from 50 pieces",
+      "cta": "Shop safety gear",
+      "href": "/search?category=ppe",
+      "theme": "primary",
+      "icon": "safety",
+      "category": "ppe"
+    },
+    {
+      "id": "quote",
+      "badge": "Free",
+      "title": "Send your list, get quotes in hours",
+      "text": "Upload a bill of quantities and compare sellers",
+      "cta": "Request a quote",
+      "href": "/quote",
+      "theme": "dark",
+      "icon": "quote"
+    }
+  ]
+}
