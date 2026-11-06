@@ -12,6 +12,10 @@ const kinds = {
   product: { who: "seller", formats: "jpg,jpeg,png,webp", maxBytes: 5_000_000 },
   estate: { who: "admin", formats: "jpg,jpeg,png,webp", maxBytes: 5_000_000 },
   quote: { who: "anyone", formats: "pdf,xls,xlsx,csv,jpg,jpeg,png", maxBytes: 20_000_000 },
+  /** Pro profile photo and portfolio. */
+  pro: { who: "user", formats: "jpg,jpeg,png,webp", maxBytes: 5_000_000 },
+  /** Photos of the work a buyer wants done. */
+  job: { who: "user", formats: "jpg,jpeg,png,webp", maxBytes: 5_000_000 },
 } as const
 export type UploadKind = keyof typeof kinds
 export const uploadKinds = Object.keys(kinds) as [UploadKind, ...UploadKind[]]

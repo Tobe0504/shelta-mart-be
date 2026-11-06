@@ -16,6 +16,10 @@ export async function listAll(req: Request, res: Response) {
   res.json(await quotes.listAll(listQuotesSchema.parse(req.query)))
 }
 
+export async function get(req: Request, res: Response) {
+  res.json({ data: await quotes.getQuote(objectId.parse(req.params.id)) })
+}
+
 export async function update(req: Request, res: Response) {
   res.json({ data: await quotes.updateQuote(objectId.parse(req.params.id), updateQuoteSchema.parse(req.body)) })
 }

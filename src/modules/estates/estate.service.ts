@@ -30,10 +30,12 @@ export async function deleteEstate(slug: string) {
   if (!deletedCount) throw notFound("Property")
 }
 
-export const createEstate = (input: EstateInput) => EstateModel.create({ ...input, slug: uniqueSlug(input.name) })
+export const createEstate = ({ coords, ...input }: EstateInput) => EstateModel.create({ ...input, coords: coords ?? undefined, slug: uniqueSlug(input.name) })
 
-export async function updateEstate(slug: string, input: UpdateEstateInput) {
-  const estate = await EstateModel.findOneAndUpdate({ slug }, input, { new: true, runValidators: true })
+export async function updateEstate(slug: string, { coords, ...input }: UpdateEstateInput) {
+  // `coords: null` removes the map pin.
+  const update = coords === null ? { ...input, $unset: { coords: 1 } } : { ...input, ...(coords && { coords }) }
+  const estate = await EstateModel.findOneAndUpdate({ slug }, update, { new: true, runValidators: true })
   if (!estate) throw notFound("Property")
   return estate
 }

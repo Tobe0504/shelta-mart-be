@@ -25,6 +25,10 @@ const settingSchema = new Schema(
     deliveryDaysAhead: { type: Number, default: 4, min: 1, max: 14 },
     /** Hours after the buyer confirms delivery before the seller is paid out. */
     payoutDelayHours: { type: Number, default: 0, min: 0 },
+    /** Default commission on service jobs paid through SheltaMart; trades can be overridden in `categoryCommission`. */
+    serviceCommissionRate: { type: Number, default: 0.05, min: 0, max: 1 },
+    /** Most quotes a service job accepts before it stops showing to pros. */
+    jobQuoteLimit: { type: Number, default: 5, min: 1, max: 20 },
   },
   schemaOptions(),
 )

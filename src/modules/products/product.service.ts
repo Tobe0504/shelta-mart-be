@@ -7,9 +7,9 @@ import { PUBLIC_STORE } from "../stores/store.model.ts"
 import { getOwnStore } from "../stores/store.service.ts"
 import { ProductModel, type Product } from "./product.model.ts"
 import type { ProductInput, SearchInput, SellerListInput, UpdateProductInput } from "./product.schema.ts"
+import { contains } from "../../lib/regex.ts"
 
-const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-const nameMatch = (q: string) => ({ $or: [{ name: new RegExp(escape(q), "i") }, { brand: new RegExp(escape(q), "i") }] })
+const nameMatch = (q: string) => ({ $or: [{ name: contains(q) }, { brand: contains(q) }] })
 
 const sorts = {
   best: { rating: -1, reviewCount: -1 },

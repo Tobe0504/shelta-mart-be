@@ -1,12 +1,16 @@
 import { model, Schema, type InferSchemaType } from "mongoose"
 import { schemaOptions } from "../../lib/schema.ts"
 
+/** Products are sold through the cart; services are trades people hire through job requests. */
+export const departmentKinds = ["products", "services"] as const
+
 export const tones = ["blue", "peach", "mint", "lilac", "yellow", "pink", "teal", "slate", "lime"] as const
 
 const departmentSchema = new Schema(
   {
     slug: { type: String, required: true, unique: true },
     name: { type: String, required: true, trim: true },
+    kind: { type: String, enum: departmentKinds, default: "products", index: true },
     order: { type: Number, default: 0 },
   },
   schemaOptions(),

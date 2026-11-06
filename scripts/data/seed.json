@@ -1284,5 +1284,358 @@
       "theme": "dark",
       "icon": "quote"
     }
+  ],
+  "serviceDepartments": [
+    {
+      "slug": "construction-services",
+      "name": "Construction services"
+    },
+    {
+      "slug": "mechanical-installations",
+      "name": "Mechanical installations"
+    },
+    {
+      "slug": "electrical-services",
+      "name": "Electrical services"
+    },
+    {
+      "slug": "landscaping-services",
+      "name": "Landscaping & gardens"
+    },
+    {
+      "slug": "safety-services",
+      "name": "Safety & security"
+    },
+    {
+      "slug": "professional-services",
+      "name": "Professional services"
+    }
+  ],
+  "trades": [
+    {
+      "slug": "builders",
+      "name": "Builders & contractors",
+      "tone": "peach",
+      "department": "construction-services"
+    },
+    {
+      "slug": "masons",
+      "name": "Masons & bricklayers",
+      "tone": "yellow",
+      "department": "construction-services"
+    },
+    {
+      "slug": "carpenters",
+      "name": "Carpenters",
+      "tone": "lime",
+      "department": "construction-services"
+    },
+    {
+      "slug": "tilers",
+      "name": "Tilers",
+      "tone": "teal",
+      "department": "construction-services"
+    },
+    {
+      "slug": "painters",
+      "name": "Painters",
+      "tone": "pink",
+      "department": "construction-services"
+    },
+    {
+      "slug": "roofers",
+      "name": "Roofers",
+      "tone": "lilac",
+      "department": "construction-services"
+    },
+    {
+      "slug": "welders",
+      "name": "Welders & fabricators",
+      "tone": "slate",
+      "department": "construction-services"
+    },
+    {
+      "slug": "plumbers",
+      "name": "Plumbers",
+      "tone": "blue",
+      "department": "mechanical-installations"
+    },
+    {
+      "slug": "ac-hvac",
+      "name": "AC & ventilation",
+      "tone": "teal",
+      "department": "mechanical-installations"
+    },
+    {
+      "slug": "borehole",
+      "name": "Borehole drilling",
+      "tone": "blue",
+      "department": "mechanical-installations"
+    },
+    {
+      "slug": "electricians",
+      "name": "Electricians",
+      "tone": "yellow",
+      "department": "electrical-services"
+    },
+    {
+      "slug": "solar-installers",
+      "name": "Solar installers",
+      "tone": "lime",
+      "department": "electrical-services"
+    },
+    {
+      "slug": "landscapers",
+      "name": "Landscapers",
+      "tone": "mint",
+      "department": "landscaping-services"
+    },
+    {
+      "slug": "paving",
+      "name": "Interlocking & paving",
+      "tone": "peach",
+      "department": "landscaping-services"
+    },
+    {
+      "slug": "cctv-installers",
+      "name": "CCTV & access control",
+      "tone": "slate",
+      "department": "safety-services"
+    },
+    {
+      "slug": "fire-safety",
+      "name": "Fire safety",
+      "tone": "pink",
+      "department": "safety-services"
+    },
+    {
+      "slug": "pest-control",
+      "name": "Fumigation & pest control",
+      "tone": "mint",
+      "department": "safety-services"
+    },
+    {
+      "slug": "architects",
+      "name": "Architects",
+      "tone": "lilac",
+      "department": "professional-services"
+    },
+    {
+      "slug": "engineers",
+      "name": "Structural engineers",
+      "tone": "blue",
+      "department": "professional-services"
+    },
+    {
+      "slug": "quantity-surveyors",
+      "name": "Quantity surveyors",
+      "tone": "yellow",
+      "department": "professional-services"
+    },
+    {
+      "slug": "land-surveyors",
+      "name": "Land surveyors",
+      "tone": "lime",
+      "department": "professional-services"
+    }
+  ],
+  "pros": [
+    {
+      "id": "tunde",
+      "name": "Tunde Bakare",
+      "kind": "individual",
+      "headline": "Floor and wall tiling, 9 years",
+      "trades": [
+        "tilers"
+      ],
+      "location": "Surulere, Lagos",
+      "coords": {
+        "lat": 6.5,
+        "lng": 3.354
+      },
+      "radiusKm": 35,
+      "rate": {
+        "amount": 6000,
+        "unit": "m²"
+      },
+      "years": 9,
+      "verified": true,
+      "rating": 4.8,
+      "reviewCount": 42,
+      "jobsDone": 57,
+      "about": "Porcelain, granite and marble floors, bathrooms and stair nosing. I bring my own cutters and levelling kit."
+    },
+    {
+      "id": "brightpower",
+      "name": "BrightPower Solar",
+      "kind": "company",
+      "headline": "Solar and inverter installs for homes and offices",
+      "trades": [
+        "solar-installers",
+        "electricians"
+      ],
+      "location": "Ikeja, Lagos",
+      "coords": {
+        "lat": 6.6018,
+        "lng": 3.3515
+      },
+      "radiusKm": 60,
+      "rate": {
+        "amount": 250000,
+        "unit": "job"
+      },
+      "years": 6,
+      "verified": true,
+      "rating": 4.7,
+      "reviewCount": 31,
+      "jobsDone": 48,
+      "about": "Sizing, installation and maintenance of hybrid inverter and lithium battery systems. 12-month workmanship warranty."
+    },
+    {
+      "id": "okon",
+      "name": "Okon Plumbing Works",
+      "kind": "individual",
+      "headline": "Plumbing, water tanks and pumps",
+      "trades": [
+        "plumbers",
+        "borehole"
+      ],
+      "location": "Yaba, Lagos",
+      "coords": {
+        "lat": 6.5095,
+        "lng": 3.3711
+      },
+      "radiusKm": 25,
+      "rate": {
+        "amount": 15000,
+        "unit": "day"
+      },
+      "years": 12,
+      "verified": false,
+      "rating": 4.5,
+      "reviewCount": 18,
+      "jobsDone": 25,
+      "about": "New installs, leak repairs, overhead tanks and pumping machines."
+    },
+    {
+      "id": "greenline",
+      "name": "Greenline Landscapes",
+      "kind": "company",
+      "headline": "Landscape design, lawns and interlocking",
+      "trades": [
+        "landscapers",
+        "paving"
+      ],
+      "location": "Lekki, Lagos",
+      "coords": {
+        "lat": 6.4474,
+        "lng": 3.4723
+      },
+      "radiusKm": 50,
+      "rate": null,
+      "years": 8,
+      "verified": true,
+      "rating": 4.9,
+      "reviewCount": 27,
+      "jobsDone": 33,
+      "about": "Garden design and build, carpet grass, irrigation and interlocking driveways."
+    },
+    {
+      "id": "adaeze",
+      "name": "Arc. Adaeze Nwosu",
+      "kind": "individual",
+      "headline": "Residential architect, COREN registered",
+      "trades": [
+        "architects"
+      ],
+      "location": "Wuse, Abuja",
+      "coords": {
+        "lat": 9.0765,
+        "lng": 7.4986
+      },
+      "radiusKm": 500,
+      "rate": null,
+      "years": 11,
+      "verified": true,
+      "rating": 5.0,
+      "reviewCount": 9,
+      "jobsDone": 14,
+      "about": "Design, approval drawings and site supervision for homes and small commercial buildings."
+    },
+    {
+      "id": "safeguard",
+      "name": "SafeGuard Systems",
+      "kind": "company",
+      "headline": "CCTV, access control and fire alarms",
+      "trades": [
+        "cctv-installers",
+        "fire-safety"
+      ],
+      "location": "Oregun, Ikeja",
+      "coords": {
+        "lat": 6.6,
+        "lng": 3.36
+      },
+      "radiusKm": 70,
+      "rate": {
+        "amount": 120000,
+        "unit": "job"
+      },
+      "years": 5,
+      "verified": false,
+      "rating": 4.4,
+      "reviewCount": 12,
+      "jobsDone": 19,
+      "about": "IP cameras with phone viewing, gate access, smoke detectors and alarm panels."
+    },
+    {
+      "id": "musa",
+      "name": "Musa Ibrahim",
+      "kind": "individual",
+      "headline": "Welding and iron gates",
+      "trades": [
+        "welders"
+      ],
+      "location": "Agege, Lagos",
+      "coords": {
+        "lat": 6.6181,
+        "lng": 3.3209
+      },
+      "radiusKm": 30,
+      "rate": {
+        "amount": 20000,
+        "unit": "day"
+      },
+      "years": 15,
+      "verified": true,
+      "rating": 4.6,
+      "reviewCount": 22,
+      "jobsDone": 40,
+      "about": "Gates, burglary proofs, railings and steel roof trusses."
+    },
+    {
+      "id": "chidi",
+      "name": "Chidi & Sons Builders",
+      "kind": "company",
+      "headline": "Building from foundation to roofing",
+      "trades": [
+        "builders",
+        "masons",
+        "roofers"
+      ],
+      "location": "Ikorodu, Lagos",
+      "coords": {
+        "lat": 6.6194,
+        "lng": 3.5105
+      },
+      "radiusKm": 60,
+      "rate": null,
+      "years": 18,
+      "verified": true,
+      "rating": 4.7,
+      "reviewCount": 15,
+      "jobsDone": 21,
+      "about": "Full builds and renovations with our own crew. We work from your drawings and bill of quantities."
+    }
   ]
 }

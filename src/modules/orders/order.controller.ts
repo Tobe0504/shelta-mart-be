@@ -1,3 +1,4 @@
+import { processDueJobPayouts } from "../jobs/job.escrow.ts"
 import type { Request, Response } from "express"
 import { currentUser } from "../../middleware/auth.ts"
 import { objectId } from "../../lib/validation.ts"
@@ -56,5 +57,6 @@ export async function decline(req: Request, res: Response) {
 }
 
 export async function runPayouts(_req: Request, res: Response) {
-  res.json({ data: await orders.processDuePayouts() })
+  const [goods, jobs] = await Promise.all([orders.processDuePayouts(), processDueJobPayouts()])
+  res.json({ data: { paid: goods.paid + jobs.paid } })
 }

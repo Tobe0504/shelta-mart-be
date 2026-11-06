@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { coordsSchema } from "../../lib/geo.ts"
 import { naira, pagination, text } from "../../lib/validation.ts"
 import { tones } from "../catalog/catalog.model.ts"
 import { estateKinds } from "./estate.model.ts"
@@ -11,6 +12,9 @@ export const estateSchema = z.object({
   area: text(80),
   city: text(60),
   detail: z.string().trim().max(200).optional(),
+  address: z.string().trim().max(240).optional(),
+  coords: coordsSchema.nullable().optional(),
+  description: z.string().trim().max(5000).optional(),
   price: naira,
   per: z.string().trim().max(30).optional(),
   tone: z.enum(tones).optional(),

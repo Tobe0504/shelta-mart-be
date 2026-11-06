@@ -13,6 +13,12 @@ export async function listAll({ status, ...page }: ListQuotesInput) {
   return paged(items, total, page)
 }
 
+export async function getQuote(id: string) {
+  const quote = await QuoteModel.findById(id)
+  if (!quote) throw notFound("Quote request")
+  return quote
+}
+
 export async function updateQuote(id: string, input: UpdateQuoteInput) {
   const quote = await QuoteModel.findByIdAndUpdate(id, input, { new: true, runValidators: true })
   if (!quote) throw notFound("Quote")

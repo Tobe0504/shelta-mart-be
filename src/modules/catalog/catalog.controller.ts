@@ -1,10 +1,10 @@
 import type { Request, Response } from "express"
 import { slug } from "../../lib/validation.ts"
-import { categorySchema, departmentSchema, updateCategorySchema } from "./catalog.schema.ts"
+import { catalogQuerySchema, categorySchema, departmentSchema, updateCategorySchema } from "./catalog.schema.ts"
 import * as catalog from "./catalog.service.ts"
 
-export async function list(_req: Request, res: Response) {
-  res.json({ data: await catalog.getCatalog() })
+export async function list(req: Request, res: Response) {
+  res.json({ data: await catalog.getCatalog(catalogQuerySchema.parse(req.query).kind) })
 }
 
 export async function getCategory(req: Request, res: Response) {

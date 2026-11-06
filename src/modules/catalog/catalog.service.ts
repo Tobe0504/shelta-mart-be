@@ -1,11 +1,14 @@
 import { badRequest, conflict, notFound } from "../../lib/errors.ts"
 import { ProductModel } from "../products/product.model.ts"
 import { CategoryModel, DepartmentModel } from "./catalog.model.ts"
-import type { CategoryInput, DepartmentInput, UpdateCategoryInput } from "./catalog.schema.ts"
+import type { CatalogKind, CategoryInput, DepartmentInput, UpdateCategoryInput } from "./catalog.schema.ts"
 
-/** Departments in order, each with its categories. */
-export async function getCatalog() {
-  const [departments, categories] = await Promise.all([DepartmentModel.find().sort("order").lean(), CategoryModel.find().sort("order").lean()])
+/** Departments of one kind (or all), in order, each with its categories. */
+export async function getCatalog(kind: CatalogKind) {
+  const [departments, categories] = await Promise.all([
+    DepartmentModel.find(kind === "all" ? {} : kind === "products" ? { kind: { $ne: "services" } } : { kind }).sort({ kind: 1, order: 1 }).lean(),
+    CategoryModel.find().sort("order").lean(),
+  ])
   return departments.map(({ _id, ...d }) => ({
     id: String(_id),
     ...d,
@@ -19,8 +22,17 @@ export async function getCategory(slug: string) {
   return category
 }
 
+/** Throws unless `slug` is a product category (not a service trade). */
 export async function assertCategory(slug: string) {
-  if (!(await CategoryModel.exists({ slug }))) throw badRequest(`Unknown category “${slug}”`)
+  const category = await CategoryModel.findOne({ slug }).select("department").lean()
+  if (!category || (await DepartmentModel.exists({ slug: category.department, kind: "services" }))) throw badRequest(`Unknown category “${slug}”`)
+}
+
+/** Throws unless every slug is a category in a services department. */
+export async function assertTrades(slugs: string[]) {
+  const departments = await DepartmentModel.find({ kind: "services" }).distinct("slug")
+  const found = await CategoryModel.countDocuments({ slug: { $in: slugs }, department: { $in: departments } })
+  if (found !== new Set(slugs).size) throw badRequest("Choose trades from the services list")
 }
 
 export const upsertDepartment = ({ slug, ...rest }: DepartmentInput) =>

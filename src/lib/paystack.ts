@@ -51,7 +51,9 @@ export function verifyWebhookSignature(rawBody: Buffer, signature: string | unde
 export async function listBanks() {
   if (!paystackEnabled) return [{ name: "Test Bank", code: "001" }]
   const banks = await call<{ name: string; code: string; active: boolean }[]>("/bank?country=nigeria&perPage=100")
-  return banks.filter((b) => b.active).map(({ name, code }) => ({ name, code }))
+  // Paystack lists a few codes twice (e.g. old and new names); keep the first so each code is one choice.
+  const byCode = new Map(banks.filter((b) => b.active).map(({ name, code }) => [code, { name, code }] as const).reverse())
+  return [...byCode.values()].reverse()
 }
 
 export async function resolveAccount(accountNumber: string, bankCode: string) {

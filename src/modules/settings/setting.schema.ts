@@ -17,6 +17,8 @@ export const updateSettingsSchema = z
     deliveryWindows: z.array(z.string().trim().min(1)).min(1),
     deliveryDaysAhead: z.number().int().min(1).max(14),
     payoutDelayHours: z.number().min(0),
+    serviceCommissionRate: rate,
+    jobQuoteLimit: z.number().int().min(1).max(20),
   })
   .partial()
 

@@ -13,6 +13,7 @@ import { CategoryModel, DepartmentModel } from "../src/modules/catalog/catalog.m
 import { EstateModel } from "../src/modules/estates/estate.model.ts"
 import { ProductModel } from "../src/modules/products/product.model.ts"
 import { PromoModel } from "../src/modules/promos/promo.model.ts"
+import { ProModel } from "../src/modules/pros/pro.model.ts"
 import { getSettings } from "../src/modules/settings/setting.service.ts"
 import { SiteModel } from "../src/modules/sites/site.model.ts"
 import { StoreModel } from "../src/modules/stores/store.model.ts"
@@ -26,12 +27,16 @@ type Seed = {
   products: { slug: string; sellerId: string; reviews: number; stock: number; [key: string]: unknown }[]
   estates: { id: string; [key: string]: unknown }[]
   promos: { id: string; [key: string]: unknown }[]
+  serviceDepartments: { slug: string; name: string }[]
+  trades: { slug: string; name: string; tone: string; department: string }[]
+  pros: { id: string; name: string; rate: { amount: number; unit: string } | null; [key: string]: unknown }[]
 }
 
 const data: Seed = JSON.parse(readFileSync(new URL("./data/seed.json", import.meta.url), "utf8"))
 /** Shared password for every demo account. Development only. */
 const DEMO_PASSWORD = "Password123!"
 const DEMO_SELLER_STORE = "okafor"
+const DEMO_PRO = "tunde"
 
 /** Warehouse points for the sample stores, by the area name in the seed data. */
 const warehouses: Record<string, { address: string; location: string; coords: { lat: number; lng: number } }> = {
@@ -57,8 +62,10 @@ async function main() {
   const passwordHash = await bcrypt.hash(DEMO_PASSWORD, 12)
 
   await getSettings()
-  await Promise.all(data.departments.map((d, order) => upsert(DepartmentModel, { slug: d.slug }, { ...d, order })))
+  await Promise.all(data.departments.map((d, order) => upsert(DepartmentModel, { slug: d.slug }, { ...d, kind: "products", order })))
   await Promise.all(data.categories.map((c, order) => upsert(CategoryModel, { slug: c.slug }, { ...c, order })))
+  await Promise.all(data.serviceDepartments.map((d, order) => upsert(DepartmentModel, { slug: d.slug }, { ...d, kind: "services", order })))
+  await Promise.all(data.trades.map((c, order) => upsert(CategoryModel, { slug: c.slug }, { ...c, order })))
   await Promise.all(data.areas.map(({ id, ...a }) => upsert(AreaModel, { slug: id }, { ...a, slug: id, active: true })))
 
   const buyer = await seedUser("buyer@example.com", "Chiamaka Obi", "buyer", passwordHash, "0803 000 0001")
@@ -85,6 +92,11 @@ async function main() {
   await PromoModel.deleteMany({})
   await PromoModel.insertMany(data.promos.map(({ id: _id, ...p }, order) => ({ ...p, order })))
 
+  for (const { id, rate, ...p } of data.pros) {
+    const owner = id === DEMO_PRO ? await seedUser("pro@example.com", p.name, "buyer", passwordHash, "0803 000 0003") : await seedUser(`${id}@pros.example.com`, p.name, "buyer", passwordHash)
+    await upsert(ProModel, { slug: id }, { ...p, ...(rate && { rate }), slug: id, owner: owner._id, phone: owner.phone ?? "0803 000 0099", active: true })
+  }
+
   await upsert(SiteModel, { user: buyer._id, label: "Allen Avenue site" }, {
     user: buyer._id,
     label: "Allen Avenue site",
@@ -96,7 +108,7 @@ async function main() {
   })
 
   logger.info(
-    { departments: data.departments.length, categories: data.categories.length, stores: stores.size, products: data.products.length, estates: data.estates.length, promos: data.promos.length },
+    { departments: data.departments.length, categories: data.categories.length, stores: stores.size, products: data.products.length, estates: data.estates.length, promos: data.promos.length, trades: data.trades.length, pros: data.pros.length },
     `Seeded. Demo accounts use the password ${DEMO_PASSWORD}`,
   )
 }
