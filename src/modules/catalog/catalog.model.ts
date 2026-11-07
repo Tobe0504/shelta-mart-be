@@ -11,6 +11,11 @@ const departmentSchema = new Schema(
     slug: { type: String, required: true, unique: true },
     name: { type: String, required: true, trim: true },
     kind: { type: String, enum: departmentKinds, default: "products", index: true },
+    /** Shown as a tile on the home page, in `order`. */
+    featured: { type: Boolean, default: false },
+    tone: { type: String, enum: tones, default: "blue" },
+    /** One line under the name on the department page. */
+    blurb: { type: String, trim: true },
     order: { type: Number, default: 0 },
   },
   schemaOptions(),

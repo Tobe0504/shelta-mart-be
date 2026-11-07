@@ -14,7 +14,7 @@ import type { ListStoresInput } from "./admin.schema.ts"
 
 /** Headline numbers and work queues for the admin dashboard. */
 export async function overview() {
-  const [sales, newQuotes, newEnquiries, unverifiedStores, buyers, liveProducts, payouts, unverifiedPros, escrow] = await Promise.all([
+  const [sales, newQuotes, newEnquiries, unverifiedStores, buyers, liveProducts, payouts, unverifiedPros, escrow, goodsHeld] = await Promise.all([
     OrderModel.aggregate<{ orders: number; gmv: number; commission: number }>([
       { $match: { "payment.status": "paid" } },
       { $group: { _id: null, orders: { $sum: 1 }, gmv: { $sum: "$total" }, commission: { $sum: { $sum: "$shipments.commission" } } } },
@@ -44,14 +44,21 @@ export async function overview() {
         },
       },
     ]),
+    OrderModel.aggregate<{ amount: number; count: number; issues: number }>([
+      { $match: { "payment.status": "paid" } },
+      { $unwind: "$shipments" },
+      { $match: { "shipments.status": { $in: ["placed", "confirmed", "loaded", "on_the_way"] } } },
+      { $group: { _id: null, amount: { $sum: "$shipments.amount" }, count: { $sum: 1 }, issues: { $sum: { $cond: [{ $ifNull: ["$shipments.issue.at", false] }, 1, 0] } } } },
+    ]),
   ])
   const e = escrow[0]
+  const g = goodsHeld[0]
   return {
     orders: sales[0]?.orders ?? 0,
     gmv: sales[0]?.gmv ?? 0,
     commission: (sales[0]?.commission ?? 0) + (e?.commission ?? 0),
     pendingPayouts: { count: (payouts[0]?.count ?? 0) + (e?.payoutCount ?? 0), amount: (payouts[0]?.amount ?? 0) + (e?.payoutAmount ?? 0) },
-    escrow: { amount: e?.held ?? 0, count: e?.heldCount ?? 0, issues: e?.issues ?? 0 },
+    escrow: { amount: (e?.held ?? 0) + (g?.amount ?? 0), count: (e?.heldCount ?? 0) + (g?.count ?? 0), issues: (e?.issues ?? 0) + (g?.issues ?? 0) },
     newQuotes,
     newEnquiries,
     unverifiedStores,

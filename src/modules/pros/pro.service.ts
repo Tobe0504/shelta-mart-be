@@ -8,6 +8,7 @@ import { contains } from "../../lib/regex.ts";
 import { uniqueSlug } from "../../lib/slugify.ts";
 import { CategoryModel } from "../catalog/catalog.model.ts";
 import { assertTrades } from "../catalog/catalog.service.ts";
+import { payPendingForPro } from "../jobs/job.escrow.ts";
 import { ProModel, PUBLIC_PRO, ReviewModel, type Pro } from "./pro.model.ts";
 import type {
   AdminListProsInput,
@@ -164,7 +165,10 @@ export async function setOwnPayout(
     accountName,
     recipientCode,
   };
-  return pro.save();
+  await pro.save();
+  // Anything held back for want of an account goes out now.
+  await payPendingForPro(pro._id);
+  return pro;
 }
 
 /** Adds a buyer's review and folds it into the pro's running average. */

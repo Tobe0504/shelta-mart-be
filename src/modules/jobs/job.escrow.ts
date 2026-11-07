@@ -1,9 +1,10 @@
+import type { Types } from "mongoose"
 import { env } from "../../config/env.ts"
 import { badRequest, conflict, notFound } from "../../lib/errors.ts"
 import { logger } from "../../lib/logger.ts"
-import { sendMail } from "../../lib/mailer.ts"
 import * as paystack from "../../lib/paystack.ts"
 import { percentOf } from "../../lib/pricing.ts"
+import { notify } from "../notifications/notification.service.ts"
 import { ProModel } from "../pros/pro.model.ts"
 import { commissionFor, getSettings } from "../settings/setting.service.ts"
 import { UserModel } from "../users/user.model.ts"
@@ -27,10 +28,7 @@ function findStage(job: JobDoc, stageId: string) {
   return stage
 }
 
-async function proEmail(proId: unknown) {
-  const pro = await ProModel.findById(proId).populate<{ owner: { email: string } }>("owner", "email")
-  return pro?.owner.email
-}
+const proOwner = async (proId: unknown) => (await ProModel.findById(proId).select("owner"))?.owner
 
 /** Starts a Paystack checkout for one stage. Stages are paid in order. */
 export async function startStagePayment(user: string, jobId: string, stageId: string) {
@@ -67,8 +65,7 @@ export async function markStagePaid(reference: string, amountPaid: number) {
   }
   stage.set({ status: "held", paidAt: new Date() })
   await job.save()
-  const to = await proEmail(job.hired)
-  if (to) await sendMail({ to, subject: `Paid into escrow: ${job.title}`, text: `The buyer paid “${stage.title}” (₦${stage.amount.toLocaleString("en-NG")}). It’s held by SheltaMart and released to you when they confirm the work.` })
+  await notify(await proOwner(job.hired), { kind: "payment", title: `Paid into escrow: ${job.title}`, body: `The buyer paid “${stage.title}” (₦${stage.amount.toLocaleString("en-NG")}). Start this stage; it’s released to you when they confirm the work.`, href: `/pro/jobs/${job.id}` })
   return job
 }
 
@@ -90,11 +87,18 @@ async function settle(job: JobDoc) {
   if (released) await ProModel.updateOne({ _id: job.hired }, { $inc: { jobsDone: 1 } })
 }
 
-/** Sends the pro their share. Leaves it pending if they haven't added a bank account yet. */
-async function payStage(job: JobDoc, stage: StageDoc) {
+/**
+ * Sends the pro their share. Without a bank account it stays pending and (with `remind`) they're asked to add one;
+ * adding it pays everything waiting (see `payPendingForPro`).
+ */
+async function payStage(job: JobDoc, stage: StageDoc, remind = false) {
   const pro = await ProModel.findById(job.hired)
   const recipientCode = pro?.payout?.recipientCode
-  if (!recipientCode || !stage.payout) return
+  if (!stage.payout) return
+  if (!recipientCode) {
+    if (remind && pro) await notify(pro.owner, { kind: "payout", title: "Add your bank account to get paid", body: `₦${stage.payout.toLocaleString("en-NG")} for “${job.title}” is waiting. It’s sent as soon as you add your account.`, href: "/pro/payouts" })
+    return
+  }
   const reference = `${REFERENCE_PREFIX}PAYOUT-${String(stage._id)}`
   try {
     await paystack.transfer({ amount: stage.payout, recipientCode, reference, reason: `SheltaMart job: ${job.title}` })
@@ -118,11 +122,10 @@ async function release(job: JobDoc, stage: StageDoc) {
     payoutDueAt: new Date(Date.now() + settings.payoutDelayHours * 3_600_000),
     issue: undefined,
   })
-  if (!settings.payoutDelayHours) await payStage(job, stage)
+  if (!settings.payoutDelayHours) await payStage(job, stage, true)
   await settle(job)
   await job.save()
-  const to = await proEmail(job.hired)
-  if (to) await sendMail({ to, subject: `Payment released: ${job.title}`, text: `₦${stage.payout!.toLocaleString("en-NG")} for “${stage.title}” is on its way to your bank account.` })
+  await notify(await proOwner(job.hired), { kind: "payout", title: `Payment released: ${job.title}`, body: `₦${stage.payout!.toLocaleString("en-NG")} for “${stage.title}” is on its way to your bank account.`, href: `/pro/jobs/${job.id}` })
   return job
 }
 
@@ -171,6 +174,21 @@ export async function adminRefund(jobId: string, stageId: string) {
   for (const s of job.stages) if (s.status === "unpaid") s.status = "refunded"
   await settle(job)
   return job.save()
+}
+
+/** Pays everything waiting for a pro, right after they add a bank account. */
+export async function payPendingForPro(proId: Types.ObjectId) {
+  const jobs = await JobModel.find({ hired: proId, "stages.payoutStatus": { $in: ["pending", "failed"] } })
+  let paid = 0
+  for (const job of jobs) {
+    for (const stage of job.stages)
+      if (["pending", "failed"].includes(stage.payoutStatus)) {
+        await payStage(job, stage)
+        if (stage.payoutStatus === "paid") paid++
+      }
+    await job.save()
+  }
+  return paid
 }
 
 /** Pays every released stage whose payout is due. */

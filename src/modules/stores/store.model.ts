@@ -16,6 +16,16 @@ const storeSchema = new Schema(
     address: { type: String, trim: true },
     coords: coordsField,
     about: { type: String, trim: true },
+    /** The store's own delivery times; empty uses the marketplace defaults. */
+    deliveryWindows: { type: [String], default: undefined },
+    /** Weekdays it delivers (0 = Sunday); empty means every day. */
+    deliveryDays: { type: [Number], default: undefined },
+    deliveryDaysAhead: { type: Number, min: 1, max: 14 },
+    /** Its offloading crew price; never below the marketplace minimum. */
+    offloadFee: { type: Number, min: 0 },
+    /** Buyers may collect from the warehouse instead of having it delivered. */
+    pickup: { type: Boolean, default: false },
+    pickupHours: { type: String, trim: true },
     verified: { type: Boolean, default: false },
     replyTime: { type: String, default: "same day" },
     rating: { type: Number, default: 0 },
@@ -34,4 +44,4 @@ export type Store = InferSchemaType<typeof storeSchema>
 export const StoreModel = model("Store", storeSchema)
 
 /** Fields safe to show buyers. */
-export const PUBLIC_STORE = "slug name area location coords about verified replyTime rating"
+export const PUBLIC_STORE = "slug name area location coords about verified replyTime rating pickup pickupHours"

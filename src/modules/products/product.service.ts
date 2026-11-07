@@ -2,6 +2,7 @@ import type { QueryFilter } from "mongoose"
 import { badRequest, notFound } from "../../lib/errors.ts"
 import { paged, skip } from "../../lib/paginate.ts"
 import { uniqueSlug } from "../../lib/slugify.ts"
+import { CategoryModel } from "../catalog/catalog.model.ts"
 import { assertCategory } from "../catalog/catalog.service.ts"
 import { PUBLIC_STORE } from "../stores/store.model.ts"
 import { getOwnStore } from "../stores/store.service.ts"
@@ -18,10 +19,11 @@ const sorts = {
   newest: { createdAt: -1 },
 } as const
 
-export async function search({ q, category, brand, deals, sort, ...page }: SearchInput) {
+export async function search({ q, category, department, brand, deals, sort, ...page }: SearchInput) {
   const filter: QueryFilter<Product> = { status: { $ne: "draft" } }
   if (q) Object.assign(filter, nameMatch(q))
   if (category) filter.category = category
+  else if (department) filter.category = { $in: await CategoryModel.find({ department }).distinct("slug") }
   if (brand.length) filter.brand = { $in: brand }
   if (deals) filter.$expr = { $gt: ["$was", "$price"] }
 

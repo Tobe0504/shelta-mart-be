@@ -1,9 +1,9 @@
 import type { QueryFilter } from "mongoose"
 import { badRequest, conflict, forbidden, notFound } from "../../lib/errors.ts"
 import { hasCoords, haversineKm } from "../../lib/geo.ts"
-import { sendMail } from "../../lib/mailer.ts"
 import { paged, skip } from "../../lib/paginate.ts"
 import { assertTrades } from "../catalog/catalog.service.ts"
+import { notify } from "../notifications/notification.service.ts"
 import { ProModel } from "../pros/pro.model.ts"
 import { addReview, requireOwnPro } from "../pros/pro.service.ts"
 import { getSettings } from "../settings/setting.service.ts"
@@ -28,7 +28,24 @@ export async function createJob(user: string, { pro: proSlug, ...input }: Create
     if (!pro) throw notFound("Pro")
     if (sameId(pro.owner, user)) throw badRequest("You can’t hire yourself")
   }
-  return JobModel.create({ ...input, user, pro: pro?._id })
+  const job = await JobModel.create({ ...input, user, pro: pro?._id })
+  await announceJob(job, pro, user)
+  return job
+}
+
+/** Tells the asked pro, or every active pro in the trade whose radius covers the site, about a new job. */
+async function announceJob(job: JobDoc, direct: ProDoc | null, buyer: string) {
+  const pros = direct ? [direct] : await ProModel.find({ active: true, trades: job.trade, owner: { $ne: buyer } }).select("owner coords radiusKm").limit(500)
+  const reach = pros.filter((p) => direct || !hasCoords(p.coords) || !hasCoords(job.site?.coords) || haversineKm(p.coords, job.site.coords) <= p.radiusKm)
+  await notify(
+    reach.map((p) => p.owner),
+    {
+      kind: "job",
+      title: direct ? `A buyer asked you for a quote: ${job.title}` : `New job near you: ${job.title}`,
+      body: [job.site?.area, job.budget && `budget up to ₦${job.budget.toLocaleString("en-NG")}`, job.startBy && `start ${job.startBy}`].filter(Boolean).join(" · "),
+      href: `/pro/jobs/${job.id}`,
+    },
+  )
 }
 
 /** Strips other pros' phones from a buyer's job. */
@@ -62,8 +79,8 @@ export async function hire(user: string, id: string, bidId: string) {
   const stages = bid.stages.length ? bid.stages : [{ title: "Full job", amount: bid.amount }]
   job.set({ status: "hired", hired: bid.pro, stages: stages.map(({ title, amount }) => ({ title, amount })) })
   await job.save()
-  const pro = await ProModel.findById(bid.pro).populate<{ owner: { email: string } }>("owner", "email")
-  if (pro) await sendMail({ to: pro.owner.email, subject: `You’ve been hired: ${job.title}`, text: `Call ${job.contactName} on ${job.contactPhone}. Site: ${job.site?.address}. You’ll be told when each stage is paid into escrow.` })
+  const pro = await ProModel.findById(bid.pro).select("owner")
+  await notify(pro?.owner, { kind: "hired", title: `You’ve been hired: ${job.title}`, body: `Call ${job.contactName} on ${job.contactPhone}. You’ll be told when each stage is paid into escrow.`, href: `/pro/jobs/${job.id}` })
   return job
 }
 
@@ -161,7 +178,7 @@ export async function placeBid(owner: string, id: string, input: BidInput) {
   if (job.bids.length >= jobQuoteLimit) throw conflict("This job has enough quotes")
   job.bids.push({ ...input, pro: pro._id })
   await job.save()
-  await sendMail({ to: job.user.email, subject: `New quote for “${job.title}”`, text: `${pro.name} quoted ₦${input.amount.toLocaleString("en-NG")} (${input.timeline}). Compare quotes in My jobs.` })
+  await notify(job.user._id, { kind: "quote", title: `New quote for “${job.title}”`, body: `${pro.name} quoted ₦${input.amount.toLocaleString("en-NG")} (${input.timeline}).`, href: `/account/jobs/${job.id}` })
   return job.bids.at(-1)
 }
 

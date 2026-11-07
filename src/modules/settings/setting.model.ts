@@ -9,7 +9,7 @@ const settingSchema = new Schema(
     commissionRate: { type: Number, default: 0.05, min: 0, max: 1 },
     /** Per-category overrides of `commissionRate`. */
     categoryCommission: [{ _id: false, category: { type: String, required: true }, rate: { type: Number, required: true, min: 0, max: 1 } }],
-    /** Flat fee per shipment for an offloading crew. */
+    /** Lowest price a store may charge for an offloading crew (and the price when it hasn't set one). */
     offloadFee: { type: Number, default: 5_000, min: 0 },
     /** Flat service fee added to every order (0 = none). */
     serviceFee: { type: Number, default: 0, min: 0 },

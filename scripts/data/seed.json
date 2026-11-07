@@ -2,27 +2,45 @@
   "departments": [
     {
       "slug": "materials",
-      "name": "Building materials"
+      "name": "Building materials",
+      "tone": "blue",
+      "featured": true,
+      "blurb": "Cement, rods, blocks, roofing, tiles and more"
     },
     {
       "slug": "machinery",
-      "name": "Machinery & equipment"
+      "name": "Machinery & equipment",
+      "tone": "peach",
+      "featured": true,
+      "blurb": "Plant hire, machinery and tools"
     },
     {
       "slug": "interiors",
-      "name": "Interiors & furniture"
+      "name": "Interiors & furniture",
+      "tone": "lilac",
+      "featured": true,
+      "blurb": "Furniture, doors, windows and lighting"
     },
     {
       "slug": "power",
-      "name": "Electrical & electronics"
+      "name": "Electrical & electronics",
+      "tone": "yellow",
+      "featured": true,
+      "blurb": "Wiring, fittings, solar and inverters"
     },
     {
       "slug": "outdoor",
-      "name": "Landscaping & gardens"
+      "name": "Landscaping & gardens",
+      "tone": "lime",
+      "featured": true,
+      "blurb": "Garden, paving, fencing and gates"
     },
     {
       "slug": "safety",
-      "name": "Safety & security"
+      "name": "Safety & security",
+      "tone": "pink",
+      "featured": false,
+      "blurb": "Safety gear, CCTV and security"
     }
   ],
   "categories": [
@@ -1288,27 +1306,45 @@
   "serviceDepartments": [
     {
       "slug": "construction-services",
-      "name": "Construction services"
+      "name": "Construction services",
+      "tone": "teal",
+      "featured": true,
+      "blurb": "Builders, masons, tilers, painters and more"
     },
     {
       "slug": "mechanical-installations",
-      "name": "Mechanical installations"
+      "name": "Mechanical installations",
+      "tone": "blue",
+      "featured": true,
+      "blurb": "Plumbing, AC and borehole drilling"
     },
     {
       "slug": "electrical-services",
-      "name": "Electrical services"
+      "name": "Electrical services",
+      "tone": "yellow",
+      "featured": false,
+      "blurb": "Electricians and solar installers"
     },
     {
       "slug": "landscaping-services",
-      "name": "Landscaping & gardens"
+      "name": "Landscaping & gardens",
+      "tone": "mint",
+      "featured": false,
+      "blurb": "Landscaping, lawns and paving"
     },
     {
       "slug": "safety-services",
-      "name": "Safety & security"
+      "name": "Safety & security",
+      "tone": "slate",
+      "featured": false,
+      "blurb": "CCTV, fire safety and pest control"
     },
     {
       "slug": "professional-services",
-      "name": "Professional services"
+      "name": "Professional services",
+      "tone": "lilac",
+      "featured": true,
+      "blurb": "Architects, engineers and surveyors"
     }
   ],
   "trades": [

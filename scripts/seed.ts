@@ -20,14 +20,14 @@ import { StoreModel } from "../src/modules/stores/store.model.ts"
 import { UserModel } from "../src/modules/users/user.model.ts"
 
 type Seed = {
-  departments: { slug: string; name: string }[]
+  departments: { slug: string; name: string; tone: string; featured: boolean; blurb: string }[]
   categories: { slug: string; name: string; tone: string; department: string }[]
   sellers: { id: string; name: string; area: string; verified: boolean; replyTime: string }[]
   areas: { id: string; city: string; name: string; deliveryFee: number }[]
   products: { slug: string; sellerId: string; reviews: number; stock: number; [key: string]: unknown }[]
   estates: { id: string; [key: string]: unknown }[]
   promos: { id: string; [key: string]: unknown }[]
-  serviceDepartments: { slug: string; name: string }[]
+  serviceDepartments: { slug: string; name: string; tone: string; featured: boolean; blurb: string }[]
   trades: { slug: string; name: string; tone: string; department: string }[]
   pros: { id: string; name: string; rate: { amount: number; unit: string } | null; [key: string]: unknown }[]
 }

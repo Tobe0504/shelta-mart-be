@@ -11,12 +11,27 @@ export type PricedProduct = {
   price: number
   tiers?: { min: number; price: number }[] | null
   category: string
-  store: { id: string; name: string; coords?: MaybeCoords }
+  store: StoreRules & { id: string; name: string; coords?: MaybeCoords }
 }
+
+/** A store's own delivery and pickup settings, as loaded with its products. */
+export type StoreRules = {
+  address?: string | null
+  location?: string | null
+  deliveryWindows?: string[] | null
+  deliveryDays?: number[] | null
+  deliveryDaysAhead?: number | null
+  offloadFee?: number | null
+  pickup?: boolean | null
+  pickupHours?: string | null
+}
+
+export type Fulfilment = "delivery" | "pickup"
 
 export type PricedItem = { product: PricedProduct; qty: number; unitPrice: number; total: number; saving: number }
 export type PricedShipment = {
   store: { id: string; name: string }
+  fulfilment: Fulfilment
   items: PricedItem[]
   goods: number
   delivery: number
@@ -29,29 +44,39 @@ export type PricedShipment = {
 
 /**
  * Groups lines into one shipment per store and totals them.
- * Each shipment pays `deliveryFor(store)` (distance-based), plus the offload fee when `offloadFor(storeId)` is true.
+ * Each delivered shipment pays `deliveryFor(store)` (distance-based), plus the store's offload fee when `offloadFor(storeId)` is true.
+ * Collected shipments (`fulfilmentFor(storeId) === "pickup"`) pay neither.
  */
 export function priceLines(
   lines: { product: PricedProduct; qty: number }[],
   {
     deliveryFor = () => ({ fee: 0, distanceKm: null, inRange: true }),
-    offloadFee = 0,
+    offloadFeeFor = () => 0,
     offloadFor = () => false,
-  }: { deliveryFor?: (store: PricedProduct["store"]) => DeliveryQuote; offloadFee?: number; offloadFor?: (storeId: string) => boolean } = {},
+    fulfilmentFor = () => "delivery",
+  }: {
+    deliveryFor?: (store: PricedProduct["store"]) => DeliveryQuote
+    offloadFeeFor?: (storeId: string) => number
+    offloadFor?: (storeId: string) => boolean
+    fulfilmentFor?: (storeId: string) => Fulfilment
+  } = {},
 ) {
   const byStore = new Map<string, PricedShipment>()
   for (const { product, qty } of lines) {
     const unit = unitPrice(product, qty)
     const item = { product, qty, unitPrice: unit, total: unit * qty, saving: (product.price - unit) * qty }
-    const quote = byStore.has(product.store.id) ? null : deliveryFor(product.store)
-    const shipment = byStore.get(product.store.id) ?? {
-      store: { id: product.store.id, name: product.store.name },
+    const id = product.store.id
+    const pickup = fulfilmentFor(id) === "pickup"
+    const quote = byStore.has(id) ? null : deliveryFor(product.store)
+    const shipment = byStore.get(id) ?? {
+      store: { id, name: product.store.name },
+      fulfilment: pickup ? "pickup" : "delivery",
       items: [],
       goods: 0,
-      delivery: quote!.fee,
+      delivery: pickup ? 0 : quote!.fee,
       distanceKm: quote!.distanceKm,
-      inRange: quote!.inRange,
-      offload: offloadFor(product.store.id) ? offloadFee : 0,
+      inRange: pickup || quote!.inRange,
+      offload: !pickup && offloadFor(id) ? offloadFeeFor(id) : 0,
       amount: 0,
     }
     shipment.items.push(item)

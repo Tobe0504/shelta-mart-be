@@ -27,6 +27,10 @@ const shipmentSchema = new Schema({
   store: { type: Schema.Types.ObjectId, ref: "Store", required: true, index: true },
   storeName: { type: String, required: true },
   lines: { type: [lineSchema], required: true },
+  /** Delivered to the site, or collected by the buyer from the store. */
+  fulfilment: { type: String, enum: ["delivery", "pickup"], default: "delivery" },
+  /** Where to collect from, for pickups. */
+  pickupAddress: String,
   slot: { type: String, required: true },
   offload: { type: Boolean, default: false },
   goods: { type: Number, required: true },

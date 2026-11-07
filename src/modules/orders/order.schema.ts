@@ -8,7 +8,7 @@ export const createOrderSchema = z.object({
   siteId: objectId,
   paymentMethod: z.enum(paymentMethods),
   /** Delivery choices per store in the cart. */
-  shipments: z.array(z.object({ store: objectId, slot: text(60), offload: z.boolean().default(false) })).min(1),
+  shipments: z.array(z.object({ store: objectId, slot: text(60), offload: z.boolean().default(false), fulfilment: z.enum(["delivery", "pickup"]).default("delivery") })).min(1),
 })
 
 export const listOrdersSchema = pagination.extend({ status: z.enum(shipmentStatuses).optional() })

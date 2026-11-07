@@ -1,4 +1,6 @@
-import { notFound } from "../../lib/errors.ts"
+import { badRequest, notFound } from "../../lib/errors.ts"
+import { payPendingForStore } from "../orders/order.service.ts"
+import { getSettings } from "../settings/setting.service.ts"
 import * as paystack from "../../lib/paystack.ts"
 import { uniqueSlug } from "../../lib/slugify.ts"
 import { PUBLIC_STORE, StoreModel } from "./store.model.ts"
@@ -21,6 +23,10 @@ export async function getOwnStore(owner: string) {
 
 export async function updateOwnStore(owner: string, input: UpdateStoreInput) {
   const store = await getOwnStore(owner)
+  if (input.offloadFee !== undefined) {
+    const { offloadFee: minimum } = await getSettings()
+    if (input.offloadFee < minimum) throw badRequest(`Offloading can’t be less than ₦${minimum.toLocaleString("en-NG")}, SheltaMart’s minimum`)
+  }
   store.set(input)
   return store.save()
 }
@@ -31,7 +37,10 @@ export async function setPayout(owner: string, { bankCode, bankName, accountNumb
   const { accountName } = await paystack.resolveAccount(accountNumber, bankCode)
   const { recipientCode } = await paystack.createRecipient({ name: accountName, accountNumber, bankCode })
   store.payout = { bankCode, bankName, accountNumber, accountName, recipientCode }
-  return store.save()
+  await store.save()
+  // Anything held back for want of an account goes out now.
+  await payPendingForStore(store._id)
+  return store
 }
 
 export const resolveAccount = (accountNumber: string, bankCode: string) => paystack.resolveAccount(accountNumber, bankCode)

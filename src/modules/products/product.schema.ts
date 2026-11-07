@@ -5,6 +5,8 @@ import { productStatuses } from "./product.model.ts"
 export const searchSchema = pagination.extend({
   q: z.string().trim().max(100).optional(),
   category: slug.optional(),
+  /** Every category in a department. */
+  department: slug.optional(),
   brand: list(z.string().trim().min(1)),
   deals: z.stringbool().optional(),
   sort: z.enum(["best", "price-asc", "price-desc", "newest"]).default("best"),

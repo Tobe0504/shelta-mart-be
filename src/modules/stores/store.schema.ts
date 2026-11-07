@@ -3,7 +3,20 @@ import { coordsSchema } from "../../lib/geo.ts"
 import { text } from "../../lib/validation.ts"
 
 export const updateStoreSchema = z
-  .object({ name: text(120), about: z.string().trim().max(1000), replyTime: text(40), address: text(240), location: text(120), coords: coordsSchema })
+  .object({
+    name: text(120),
+    about: z.string().trim().max(1000),
+    replyTime: text(40),
+    address: text(240),
+    location: text(120),
+    coords: coordsSchema,
+    deliveryWindows: z.array(text(20)).min(1).max(6),
+    deliveryDays: z.array(z.number().int().min(0).max(6)).min(1).max(7),
+    deliveryDaysAhead: z.number().int().min(1).max(14),
+    offloadFee: z.number().int().min(0),
+    pickup: z.boolean(),
+    pickupHours: z.string().trim().max(80),
+  })
   .partial()
 
 export const payoutSchema = z.object({

@@ -2,7 +2,15 @@ import { z } from "zod"
 import { slug, text } from "../../lib/validation.ts"
 import { departmentKinds, tones } from "./catalog.model.ts"
 
-export const departmentSchema = z.object({ slug, name: text(80), kind: z.enum(departmentKinds).optional(), order: z.number().int().optional() })
+export const departmentSchema = z.object({
+  slug,
+  name: text(80),
+  kind: z.enum(departmentKinds).optional(),
+  featured: z.boolean().optional(),
+  tone: z.enum(tones).optional(),
+  blurb: z.string().trim().max(160).optional(),
+  order: z.number().int().optional(),
+})
 export const catalogQuerySchema = z.object({ kind: z.enum([...departmentKinds, "all"]).default("products") })
 export const categorySchema = z.object({ slug, name: text(80), tone: z.enum(tones), department: slug, order: z.number().int().optional() })
 export const updateCategorySchema = categorySchema.omit({ slug: true }).partial()

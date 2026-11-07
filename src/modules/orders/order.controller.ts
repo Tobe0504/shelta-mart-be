@@ -28,6 +28,10 @@ export async function confirm(req: Request, res: Response) {
   res.json({ data: await orders.confirmDelivery(...target(req)) })
 }
 
+export async function slots(req: Request, res: Response) {
+  res.json({ data: await orders.slotsFor(...target(req)) })
+}
+
 export async function reschedule(req: Request, res: Response) {
   res.json({ data: await orders.reschedule(...target(req), rescheduleSchema.parse(req.body).slot) })
 }
@@ -59,4 +63,18 @@ export async function decline(req: Request, res: Response) {
 export async function runPayouts(_req: Request, res: Response) {
   const [goods, jobs] = await Promise.all([orders.processDuePayouts(), processDueJobPayouts()])
   res.json({ data: { paid: goods.paid + jobs.paid } })
+}
+
+export async function listEscrow(_req: Request, res: Response) {
+  res.json({ data: await orders.listEscrowOrders() })
+}
+
+const adminTarget = (req: Request) => [orderNumber.parse(req.params.number), objectId.parse(req.params.shipmentId)] as const
+
+export async function adminRelease(req: Request, res: Response) {
+  res.json({ data: await orders.adminRelease(...adminTarget(req)) })
+}
+
+export async function adminRefund(req: Request, res: Response) {
+  res.json({ data: await orders.adminRefund(...adminTarget(req)) })
 }
